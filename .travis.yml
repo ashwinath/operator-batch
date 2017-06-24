@@ -1,20 +1,21 @@
 language: node_js
 node_js: 8.1.2
+sudo: required
 services:
 - redis-server
 env:
   global:
   - secure: IMButGFBY+rd/pzmyFn6cdpYJi6CW4O/pUD3EVO3GqDoTt52d7bQjqY25KB8pul2jULAlgGlllSAJHtncD/wQjuKxgITLXv3ABs4bXjlgknZR9FxD5UivwEfncxUEtSW/cIstGW7d5D8VzclIMX5IYs39I2gn5BnmYSWneKe1GAoBh0auclBECI+cShl2J/MdDW1mAn95Bpsl5wR4lGZgB0MxcTSs4RmDLJjRjFSsy3TDCskXu/CR4f4YRHN3fcDeTelKCZyq7ezENULMmjPrp5QdKQ7u+I5xyrYVOEhzAKsw7KMvlHipvgbjzJCnHdzNh23Gk7ZV82zJVdIwJ3Iq1We4MxRVoZNDnnHmGvZcksSvkL0p2sKznrHUXX+oLxgapcbBT79YKLgnSJAIZmdqQns/d1lF7n2319vp0yghykXjyz8rjPLEcrUF1PSxiU1Q06bb+SghwEk2r4tTw1fVwov0ZPZMS+fMgw7xgr1M1OHFV4RuuDdTOsCibcEpWzjq+CPS0+tZaBU66diBxutcJkZsD2mgkUJ9xHrWMVxQNCpwMwK5kQX3NwQwBKEsb/oXkwd4rrcV5jlLu/QeJHVnFGHFHOv2XCMKxBH3PuMvIE7lLJgn+hw82NVehR+c+HwVpbFXNVdWi/d4y5AxkQ3H/XKfP0biFS8P0tbvmDq5yE=
-  - secure: et9fMTSKX0KjoAjMf/L6AJLiomKblkLm6Fy3Dd1jnkSgb9ZCK3ASrtE57nlZjFj8wOPZGhNsdeSAmAHur0aA53fTaULZpa0Ud+pXV/9TB5N051waWLEI3k+mbT/cDDXaFd2VFgd9UnatOJRqA+AmrrNWtvxgGf8LHkCGQJBEaQvxKRg45JJhl7MAC4B4DNmHQvUa51QpXCNTuG69JMVx6XZHb5r9Mab5aYoLd+KxiDaq5dXvt93A4XxeERICEJz/yKtneF9Yn2uYdzE9E461OKDVobMoun2/zj4KYvvXdnK4feISWQoVr+/4UP0DP/aEMd5tJD/B3TwtJj9p9Nxyv1QFB6xzUN6EMWBWMW59Q5N7KgirCMaJt8h8yoKstNlYaHdnE4UAki/E/zw8G9kgBAyPjisBYt2oEriFwoKUkiTE9+vtdk2lDbVt23OCgHVnGGPJv2pxm5hvjRTNYund45xyz2LgYYs5IgZwB+Rq7YZBLTu7oM1UZgRGZ0ZRWY6JdUPbh4whzAqW/6AYzOEU49ditvQ//8fdQjC/pz8H5okqPFAOlitZU+hX6iGwCS6fJjJB6tj0Jr+CfNKu773yRgaeE63ZG2ewRxc9BwK0Uw4qqp2CwjCOfg3XkTUrr2GQd/prklXeUFaWGBM7GI3pcrm5DF8q67ooC4r17j7t0To=
-before_install:
-- echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END
-  CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 addons:
-  coverity_scan:
-    project:
-      name: ashwinath/operator-batch
-      description: batch server to pull in data from the internet
-    notification_email: ashwinath@hotmail.com
-    build_command_prepend: ''
-    build_command: ''
-    branch_pattern: master
+  sonarqube:
+    organization: sonarqube
+    token:
+      secure: PyzspeXfWVfGKEC2pqvGIVLDm2xWj3usL0GKKJ/T+yKN97olH/EcMP0Dw/5ZW4cfE8Y6y8aC8Z+tuJuz5iy9ePZio1GlGaQavYhxivhdCBMXlyDwy1LTao7sFYWavJGc+aZh5Bxs9PzaQA2YOHl9u4SAJMdfRBMwUQnMP7CQe4SaiV3HUIBmQqsyYpUGgvcW2phO4m8Vh05MGNj1llWOjF+CwnLeuSEylZtcJlfac9BqmR/r19A438ST5dKUcKBiQdlwkmzS4oWyrRue2V5ftAjN8BnrWcKaq3S9aghx+tzL1rDcIpA2bcJyqWiUox/z59QyXNsK6OnI5o8AepW6nOibq2w73rlophREbISrpYo1FldW3aNoYSQ1l7N0rVdsEwePTugEfP8oM8W/Aj0aEjKATiZaTgjj5WgqchfDoLRW5dxP9GNjLkskJivW80SckE+yR1xKHgKywQMxNQ0s/42CDSuhdJnRjLOTf+C7ugR0GnydaoBV1OVuGj73AurwLlQzTYzA/hWzTWqASh29Oxou/lp++b+UwfuZ313LsmvFAQPzbkMVa3xHpEJkvEeFdyRBBH1a7xgAmlm/2kXxaEMLEnIkT7Dc/zlph8Pfiea3DkFoHy9+Ih9U+BWPuVWl4L11FSrRWgjWPjVvOnOk67c1s2z1/LRmkUp6cR5jy8A=
+
+jdk:
+- oraclejdk8
+script:
+- sonar-scanner
+cache:
+  directories:
+  - "$HOME/.sonar/cache"
