@@ -1,0 +1,9 @@
+{
+  "name": "operator-batch",
+  "version": "1.0.0",
+  "description": "batch server to pull in data from the internet",
+  "main": "app.js",
+  "repository": "https://github.com/ashwinath/operator-batch.git",
+  "author": "Ashwin Chatterji <ashwinath@Hotmail.com>",
+  "license": "GPL"
+}
