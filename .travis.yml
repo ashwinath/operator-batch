@@ -15,6 +15,6 @@ addons:
       name: ashwinath/operator-batch
       description: batch server to pull in data from the internet
     notification_email: ashwinath@hotmail.com
-    build_command_prepend: yarn test
+    build_command_prepend: ''
     build_command: ''
-    branch_pattern: coverity_scan
+    branch_pattern: master
