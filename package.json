@@ -5,5 +5,20 @@
   "main": "app.js",
   "repository": "https://github.com/ashwinath/operator-batch.git",
   "author": "Ashwin Chatterji <ashwinath@Hotmail.com>",
-  "license": "GPL"
+  "license": "GPL-3.0",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "node-redis": "^0.1.7",
+    "node-schedule": "^1.2.3",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
 }
