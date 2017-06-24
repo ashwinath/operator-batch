@@ -1,7 +1,21 @@
 language: node_js
 node_js: 8.1.2
 services:
-- redis-server
+  - redis-server
 env:
   global:
-    secure: IMButGFBY+rd/pzmyFn6cdpYJi6CW4O/pUD3EVO3GqDoTt52d7bQjqY25KB8pul2jULAlgGlllSAJHtncD/wQjuKxgITLXv3ABs4bXjlgknZR9FxD5UivwEfncxUEtSW/cIstGW7d5D8VzclIMX5IYs39I2gn5BnmYSWneKe1GAoBh0auclBECI+cShl2J/MdDW1mAn95Bpsl5wR4lGZgB0MxcTSs4RmDLJjRjFSsy3TDCskXu/CR4f4YRHN3fcDeTelKCZyq7ezENULMmjPrp5QdKQ7u+I5xyrYVOEhzAKsw7KMvlHipvgbjzJCnHdzNh23Gk7ZV82zJVdIwJ3Iq1We4MxRVoZNDnnHmGvZcksSvkL0p2sKznrHUXX+oLxgapcbBT79YKLgnSJAIZmdqQns/d1lF7n2319vp0yghykXjyz8rjPLEcrUF1PSxiU1Q06bb+SghwEk2r4tTw1fVwov0ZPZMS+fMgw7xgr1M1OHFV4RuuDdTOsCibcEpWzjq+CPS0+tZaBU66diBxutcJkZsD2mgkUJ9xHrWMVxQNCpwMwK5kQX3NwQwBKEsb/oXkwd4rrcV5jlLu/QeJHVnFGHFHOv2XCMKxBH3PuMvIE7lLJgn+hw82NVehR+c+HwVpbFXNVdWi/d4y5AxkQ3H/XKfP0biFS8P0tbvmDq5yE=
+    - secure: IMButGFBY+rd/pzmyFn6cdpYJi6CW4O/pUD3EVO3GqDoTt52d7bQjqY25KB8pul2jULAlgGlllSAJHtncD/wQjuKxgITLXv3ABs4bXjlgknZR9FxD5UivwEfncxUEtSW/cIstGW7d5D8VzclIMX5IYs39I2gn5BnmYSWneKe1GAoBh0auclBECI+cShl2J/MdDW1mAn95Bpsl5wR4lGZgB0MxcTSs4RmDLJjRjFSsy3TDCskXu/CR4f4YRHN3fcDeTelKCZyq7ezENULMmjPrp5QdKQ7u+I5xyrYVOEhzAKsw7KMvlHipvgbjzJCnHdzNh23Gk7ZV82zJVdIwJ3Iq1We4MxRVoZNDnnHmGvZcksSvkL0p2sKznrHUXX+oLxgapcbBT79YKLgnSJAIZmdqQns/d1lF7n2319vp0yghykXjyz8rjPLEcrUF1PSxiU1Q06bb+SghwEk2r4tTw1fVwov0ZPZMS+fMgw7xgr1M1OHFV4RuuDdTOsCibcEpWzjq+CPS0+tZaBU66diBxutcJkZsD2mgkUJ9xHrWMVxQNCpwMwK5kQX3NwQwBKEsb/oXkwd4rrcV5jlLu/QeJHVnFGHFHOv2XCMKxBH3PuMvIE7lLJgn+hw82NVehR+c+HwVpbFXNVdWi/d4y5AxkQ3H/XKfP0biFS8P0tbvmDq5yE=
+    - secure: gmGZbnt6V8X2RlFygDXpmBR8msSdeCzXYJWtV/q0ZShjSATzgk6xhu/DGfUCbVTQiDYvW0RDJoui2qluuEFw8kfyZEnmB+CwCFmYse72lyrfoe+bh3mz8RnEVeiw+A0eKJ3VcmiRFqBpQAB9a1QkiqGRtohIvkG5zJz0MLEWvQ5mnTXKlQClEcsP1/veqPUnP1muMt0bk4Sotq9JkuzrQ7w0g8Ok4rjQLQRLmyYatZfzoRRIwfYiUlNKer9UFmErxtrXawDO+CygWAIXmnHLEF8q61RgUeDhyzYmUU/w1PNpQKffctOzMqJYr+VedZxl6C9PsZdK0igelXtAs8/Rr2YUZupSIxV7eTuAAwhU8PU3+nBFR5Qsb3WFsSFdS8naxPHdVJPV2cKR6+GJ99PzFtd/jfEL7G7GZkzSKioLkjNQ2S3AFQWhY8dKPMWobiPPCG4M2AWtsjiP3Ddsl8xiYTj9b9XsrreB8wk85VWswe0kjeOrz7OtyhifzgWlvaomjQY+6ZnQVN3UPdGTLK/KaEOqPkk5PFrcs2xUYDiUF8d9Fcx/kqC3n0SRhUBX46cthZyqiitovXyov4bv2gt14kG0LwmRGk8AJEGq+Ciu3YpT5gb2aiFK2TwLTlRhGgm8HEr0jjFpVZkUv0w9993YT21Fz5PlC6uyJiuCKk1QNq8=
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "ashwinath/operator-batch"
+      description: "batch server to pull in data from the internet"
+    notification_email: ashwinath@hotmail.com
+    build_command_prepend: "yarn test"
+    build_command:   ""
+    branch_pattern: coverity_scan
