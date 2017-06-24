@@ -7,18 +7,25 @@
   "author": "Ashwin Chatterji <ashwinath@Hotmail.com>",
   "license": "GPL-3.0",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage --coverageReporters=lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/Config/",
+      "/Winston/"
+    ]
   },
   "dependencies": {
     "axios": "^0.16.2",
     "node-redis": "^0.1.7",
     "node-schedule": "^1.2.3",
+    "redis": "^2.7.1",
     "winston": "^2.3.1"
   },
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "jest": "^20.0.4"
   }
 }
