@@ -11,14 +11,20 @@
   },
   "jest": {
     "verbose": true,
+    "unmockedModulePathPatterns": [
+      "/"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/Config/",
-      "/Winston/"
-    ]
+      "/Winston/",
+      "/Redis/"
+    ],
+    "testEnvironment": "node"
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "node-redis": "^0.1.7",
     "node-schedule": "^1.2.3",
     "redis": "^2.7.1",
