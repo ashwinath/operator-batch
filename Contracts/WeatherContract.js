@@ -2,6 +2,7 @@
  * Lays out the contract of the Hash Map Keys
  * set for Redis Database.
  * Data will be stored as WeatherContract:${DAY} ${KEY}
+ * Day counter starts at 0.
  */
 const WeatherContract = {
   /**
