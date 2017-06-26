@@ -4,6 +4,8 @@ const schedule = require('node-schedule'),
       NewsContract = require('./Contracts/NewsContract'),
       logger = require('./Winston/WinstonSession');
 
+logger.info("Operator Batch has started.");
+
 /**
  * Weather Job
  */
