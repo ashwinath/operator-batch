@@ -19,7 +19,8 @@
       "/node_modules/",
       "/Config/",
       "/Winston/",
-      "/Redis/"
+      "/Redis/",
+      "app.js"
     ],
     "testEnvironment": "node",
     "coverageDirectory": "./coverage/",
