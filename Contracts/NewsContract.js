@@ -34,8 +34,15 @@ const NewsContract = {
   /**
    * The counter kept in Redis
    */
-  COUNTER: "COUNTER"
-
+  COUNTER: "COUNTER",
+  /**
+   * News sources.
+   */
+  BBC: 'bbc-news',
+  TECHCRUNCH: 'techcrunch',
+  BLOOMBERG: 'bloomberg',
+  BUSINESS_INSIDER: 'business-insider',
+  REUTERS: 'reuters'
 }
 
 module.exports = NewsContract;
