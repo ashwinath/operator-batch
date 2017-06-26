@@ -18,6 +18,32 @@ Redis data schema will conform to the contract given in `Contracts/`
 * Job runs every 5 minutes, lower than the api call limit of 60 per minute.
 * Contract: `Contracts/WeatherContract.js`.
 
+### News (News API)
+
+* Choose a few news sources.
+* Work in progress.
+
 ### Bus Services (LTA DataMall API)
 
 * Work in progress.
+
+### Pollution Levels (NEA API)
+
+* Work in progress.
+
+### Holiday List (???)
+
+* Work in progress.
+
+### Email Checker (???)
+
+* Work in progress.
+
+### Movies (The Movie Database)
+
+* Work in progress.
+
+### Medium Articles (Medium API)
+
+* Work in progress.
+
