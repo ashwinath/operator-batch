@@ -1,5 +1,5 @@
 const downloadWeather = require('../Services/WeatherService'),
-      _ = require('lodash');
+      _ = require('lodash'),
       redis = require('../Redis/RedisSession');
 
 jest.autoMockOff();
@@ -11,7 +11,7 @@ afterAll(() => {
   redis.quit();
 });
 
-describe('Test the downloading weather api', () => {
+describe('Test downloading weather api', () => {
 
   it('will download the weather and check lower bound for persistence', done => {
     downloadWeather(() => {
