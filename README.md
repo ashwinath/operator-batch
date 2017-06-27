@@ -9,6 +9,15 @@ Operator aims to be a personal assistant for Singaporeans, helping out with dail
 
 Other functionalities will be added along the way.
 
+## Pre-Requisites
+You will need the following environment variables:
+* OPENWEATHERMAP\_API\_KEY
+* NEWSAPI\_API\_KEY
+
+You will also need the following api keys
+* [OpenWeatherMap](https://openweathermap.org/api)
+* [News API](https://newsapi.org/)
+
 ## Documentation
 Redis data schema will conform to the contract given in `Contracts/`
 
@@ -47,3 +56,6 @@ Redis data schema will conform to the contract given in `Contracts/`
 
 * Work in progress.
 
+## Credits
+
+Special thanks to News API and OpenWeatherMap for making this possible.
