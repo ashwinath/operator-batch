@@ -5,6 +5,12 @@ const axios = require('axios'),
       _ = require('lodash'),
       {handleError} = require('./commonFunctions.js');
 
+Date.prototype.addDays = function(days) {
+  var dat = new Date(this.valueOf());
+  dat.setDate(dat.getDate() + days);
+  return dat;
+}
+
 const encodedUri = encodeURI(`http://api.openweathermap.org/data/2.5/forecast/daily?q=Singapore&units=metric&cnt=14&apikey=${process.env.OPENWEATHERMAP_API_KEY}`);
 
 /**
@@ -32,8 +38,12 @@ function handleResponse(response) {
 function persist(list) {
   const multiRedis = redis.multi();
   _.range(14).forEach(iterator => {
+    const date = new Date()
+      .addDays(iterator)
+      .toDateString();
     const dayForecast = list[iterator];
     multiRedis.HMSET(`Weather:${iterator}`, [
+      WeatherContract.DATE, date,
       WeatherContract.MAX, dayForecast.temp.min,
       WeatherContract.MIN, dayForecast.temp.max,
       WeatherContract.PRESSURE, dayForecast.pressure,

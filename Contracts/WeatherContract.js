@@ -6,6 +6,10 @@
  */
 const WeatherContract = {
   /**
+   * Date of Weather Forecast.
+   */
+  DATE: "DATE",
+  /**
    * Maximum Temperature for the day.
    */
   MAX: "MAX",

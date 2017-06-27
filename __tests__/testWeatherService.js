@@ -5,9 +5,6 @@ const downloadWeather = require('../Services/WeatherService'),
 jest.autoMockOff();
 
 afterAll(() => {
-  _.range(14).forEach(iterator => {
-    redis.del(`Weather:${iterator}`);
-  });
   redis.quit();
 });
 
