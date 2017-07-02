@@ -44,8 +44,8 @@ function persist(list) {
     const dayForecast = list[iterator];
     multiRedis.HMSET(`Weather:${iterator}`, [
       WeatherContract.DATE, date,
-      WeatherContract.MAX, dayForecast.temp.min,
-      WeatherContract.MIN, dayForecast.temp.max,
+      WeatherContract.MAX, dayForecast.temp.max,
+      WeatherContract.MIN, dayForecast.temp.min,
       WeatherContract.PRESSURE, dayForecast.pressure,
       WeatherContract.HUMIDITY, dayForecast.humidity,
       WeatherContract.WEATHER_ID, dayForecast.weather[0].id,
