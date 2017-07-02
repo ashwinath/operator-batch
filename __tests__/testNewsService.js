@@ -1,5 +1,6 @@
 const downloadNews = require('../Services/NewsServices'),
       redis = require('../Redis/RedisSession'),
+      JobConfig = require('../Config/JobConfig'),
       NewsContract = require('../Contracts/NewsContract');
 
 jest.autoMockOff();
@@ -10,25 +11,11 @@ afterAll(() => {
 
 describe('Test downloading news api', () => {
 
-  it('will download BBC News', done => {
-    testNewsDownload(NewsContract.BBC, done);
-  });
-
-  it('will download TECHCRUNCH News', done => {
-    testNewsDownload(NewsContract.TECHCRUNCH, done);
-  });
-
-  it('will download BLOOMBERG News', done => {
-    testNewsDownload(NewsContract.BLOOMBERG, done);
-  });
-
-  it('will download BUSINESS_INSIDER News', done => {
-    testNewsDownload(NewsContract.BUSINESS_INSIDER, done);
-  });
-
-  it('will download REUTERS News', done => {
-    testNewsDownload(NewsContract.REUTERS, done);
-  });
+  JobConfig.news.source.forEach(source => {
+    it(`will download the news from ${source}`, done => {
+      testNewsDownload(source, done);
+    });
+  })
 
 });
 

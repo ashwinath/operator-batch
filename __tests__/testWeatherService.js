@@ -1,5 +1,6 @@
 const downloadWeather = require('../Services/WeatherService'),
       _ = require('lodash'),
+      JobConfig = require('../Config/JobConfig'),
       redis = require('../Redis/RedisSession');
 
 jest.autoMockOff();
@@ -11,7 +12,7 @@ afterAll(() => {
 describe('Test downloading weather api', () => {
 
   it('will download the weather and check lower bound for persistence', done => {
-    downloadWeather(() => {
+    downloadWeather(JobConfig.weather.country, () => {
       redis.HGETALL("Weather:0", (err, results) => {
         expect(results).toBeTruthy();
         done()
@@ -20,7 +21,7 @@ describe('Test downloading weather api', () => {
   });
 
   it('will download the weather and check upper bound for persistence', done => {
-    downloadWeather(() => {
+    downloadWeather(JobConfig.weather.country, () => {
       redis.HGETALL("Weather:13", (err, results) => {
         expect(results).toBeTruthy();
         done()

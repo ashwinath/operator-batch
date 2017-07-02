@@ -11,12 +11,12 @@ Date.prototype.addDays = function(days) {
   return dat;
 }
 
-const encodedUri = encodeURI(`http://api.openweathermap.org/data/2.5/forecast/daily?q=Singapore&units=metric&cnt=14&apikey=${process.env.OPENWEATHERMAP_API_KEY}`);
 
 /**
  * Downloads 14 days worth of OpenWeatherMap data into redis server.
  */
-function downloadWeather(callback) {
+function downloadWeather(country, callback) {
+  const encodedUri = encodeURI(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${country}&units=metric&cnt=14&apikey=${process.env.OPENWEATHERMAP_API_KEY}`);
   axios.get(encodedUri)
     .then(handleResponse)
     .then(callback)

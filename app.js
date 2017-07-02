@@ -2,6 +2,7 @@ const schedule = require('node-schedule'),
       downloadWeather = require('./Services/WeatherService'),
       downloadNews = require('./Services/NewsServices'),
       NewsContract = require('./Contracts/NewsContract'),
+      JobConfig = require('./Config/JobConfig'),
       logger = require('./Winston/WinstonSession');
 
 logger.info("Operator Batch has started.");
@@ -9,35 +10,17 @@ logger.info("Operator Batch has started.");
 /**
  * Weather Job
  */
-schedule.scheduleJob('*/5 * * * *', () => {
+schedule.scheduleJob(JobConfig.weather.cron, () => {
   logger.info("Job for Weather started.");
-  downloadWeather();
+  downloadWeather(JobConfig.weather.country);
 });
 
 /**
  * News Jobs
  */
-schedule.scheduleJob('*/30 * * * *', () => {
-  logger.info(`Job for News:${NewsContract.BBC} started.`);
-  downloadNews(NewsContract.BBC);
-});
-
-schedule.scheduleJob('*/30 * * * *', () => {
-  logger.info(`Job for News:${NewsContract.TECHCRUNCH} started.`);
-  downloadNews(NewsContract.TECHCRUNCH);
-});
-
-schedule.scheduleJob('*/30 * * * *', () => {
-  logger.info(`Job for News:${NewsContract.BLOOMBERG} started.`);
-  downloadNews(NewsContract.BLOOMBERG);
-});
-
-schedule.scheduleJob('*/30 * * * *', () => {
-  logger.info(`Job for News:${NewsContract.BUSINESS_INSIDER} started.`);
-  downloadNews(NewsContract.BUSINESS_INSIDER);
-});
-
-schedule.scheduleJob('*/30 * * * *', () => {
-  logger.info(`Job for News:${NewsContract.REUTERS} started.`);
-  downloadNews(NewsContract.REUTERS);
-});
+JobConfig.news.source.forEach(source => {
+  schedule.scheduleJob(JobConfig.news.cron, () => {
+    logger.info(`Job for News:${source} started.`);
+    downloadNews(source);
+  });
+})
