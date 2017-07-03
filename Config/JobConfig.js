@@ -4,7 +4,6 @@ module.exports = {
     cron: "*/5 * * * *"
   },
   news: {
-    source: ["techcrunch", "bbc-news", "bloomberg", "business-insider", "reuters"],
-    cron: "*/30/ * * * *"
+    cron: "*/30 * * * *"
   }
 }

@@ -18,9 +18,7 @@ schedule.scheduleJob(JobConfig.weather.cron, () => {
 /**
  * News Jobs
  */
-JobConfig.news.source.forEach(source => {
-  schedule.scheduleJob(JobConfig.news.cron, () => {
-    logger.info(`Job for News:${source} started.`);
-    downloadNews(source);
-  });
-})
+schedule.scheduleJob(JobConfig.news.cron, () => {
+  logger.info(`Job for News started.`);
+  downloadNews();
+});

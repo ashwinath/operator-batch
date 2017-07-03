@@ -34,7 +34,11 @@ const NewsContract = {
   /**
    * The counter kept in Redis
    */
-  COUNTER: "COUNTER"
+  COUNTER: "COUNTER",
+  /**
+   * News source list
+   */
+  SOURCES: "SOURCES"
 }
 
 module.exports = NewsContract;

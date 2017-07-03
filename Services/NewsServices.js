@@ -9,7 +9,19 @@ function genQueryString(source) {
   return encodeURI(`https://newsapi.org/v1/articles?source=${source}&sortBy=top&apiKey=${process.env.NEWSAPI_API_KEY}`);
 }
 
-function downloadNews(source, callback) {
+function downloadNews(callback) {
+  redis.SMEMBERS(`News:${NewsContract.SOURCES}`, (err, results) => {
+    if (err) {
+      logger.error("Error getting news sources from db" , err);
+    } else {
+      results.forEach(source => {
+        downloadNewsfromOneSource(source, callback);
+      });
+    }
+  });
+}
+
+function downloadNewsfromOneSource(source, callback) {
   logger.info(`Downloading news source from ${source}`);
   const queryString = genQueryString(source);
   axios.get(queryString)
